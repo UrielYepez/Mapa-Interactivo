@@ -1,0 +1,58 @@
+[
+  {
+    "nombre": "Universidad Autónoma de San Luis Potosí (zona centro)",
+    "tipo": "Universidad",
+    "ciudad": "San Luis Potosí, SLP",
+    "lat": 22.1511,
+    "lng": -100.9762
+  },
+  {
+    "nombre": "Universidad Autónoma de Aguascalientes",
+    "tipo": "Universidad",
+    "ciudad": "Aguascalientes, Ags.",
+    "lat": 21.915,
+    "lng": -102.315
+  },
+  {
+    "nombre": "Universidad de Guadalajara (CUCEI)",
+    "tipo": "Universidad",
+    "ciudad": "Guadalajara, Jal.",
+    "lat": 20.657,
+    "lng": -103.325
+  },
+  {
+    "nombre": "Universidad Nacional Autónoma de México (Ciudad Universitaria)",
+    "tipo": "Universidad",
+    "ciudad": "Ciudad de México",
+    "lat": 19.332,
+    "lng": -99.188
+  },
+  {
+    "nombre": "Benemérita Universidad Autónoma de Puebla",
+    "tipo": "Universidad",
+    "ciudad": "Puebla, Pue.",
+    "lat": 19.0,
+    "lng": -98.201
+  },
+  {
+    "nombre": "Universidad Autónoma de Nuevo León (Ciudad Universitaria)",
+    "tipo": "Universidad",
+    "ciudad": "San Nicolás de los Garza, NL",
+    "lat": 25.725,
+    "lng": -100.313
+  },
+  {
+    "nombre": "Universidad de Guanajuato (Campus Guanajuato)",
+    "tipo": "Universidad",
+    "ciudad": "Guanajuato, Gto.",
+    "lat": 21.019,
+    "lng": -101.257
+  },
+  {
+    "nombre": "Universidad Veracruzana (zona Xalapa)",
+    "tipo": "Universidad",
+    "ciudad": "Xalapa, Ver.",
+    "lat": 19.5438,
+    "lng": -96.9274
+  }
+]

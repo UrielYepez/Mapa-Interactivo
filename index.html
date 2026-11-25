@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mapa coroplético interactivo de México con población por entidad federativa.">
+  <title>México en datos | Mapa interactivo</title>
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://{s}.tile.openstreetmap.org">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">MX</span><span>México <b>en datos</b></span></a>
+    <span class="top-tag">VISUALIZACIÓN GEOGRÁFICA</span>
+  </header>
+
+  <main class="page">
+    <section class="intro">
+      <div>
+        <p class="eyebrow">EXPLORA · COMPARA · DESCUBRE</p>
+        <h1>Un país, <em>32 realidades.</em></h1>
+        <p class="subtitle">Explora cómo se distribuye la población entre las entidades federativas de México.</p>
+      </div>
+      <div class="source-pill"><span class="status-dot"></span> Censos INEGI · 2010 y 2020</div>
+    </section>
+
+    <section class="dashboard">
+      <aside class="sidebar">
+        <div class="panel-heading"><span class="step">01</span><div><h2>Configura el mapa</h2><p>Selecciona el año que quieres consultar.</p></div></div>
+        <label for="yearSelect">Año del censo</label>
+        <select id="yearSelect" class="select-control">
+          <option value="2020" selected>2020</option>
+          <option value="2010">2010</option>
+        </select>
+
+        <div class="divider"></div>
+        <div class="panel-heading"><span class="step">02</span><div><h2>Capas del mapa</h2><p>Activa o desactiva los puntos.</p></div></div>
+        <label class="toggle-row"><span><span class="legend-dot university"></span>Universidades</span><input type="checkbox" id="placesToggle" checked><span class="switch"></span></label>
+        <div class="divider"></div>
+
+        <div class="panel-heading"><span class="step">03</span><div><h2>Busca una entidad</h2><p>Escribe el nombre de un estado.</p></div></div>
+        <input id="stateSearch" class="search-control" type="search" placeholder="Ej. San Luis Potosí">
+        <div class="divider"></div>
+
+        <div class="legend-title"><h3>Leyenda de población</h3><span id="legendYear">2020</span></div>
+        <div id="legend" class="legend"></div>
+        <p class="small-note">Los colores representan intervalos de habitantes. La escala se recalcula al cambiar el año.</p>
+
+        <div class="source-card">
+          <span class="source-icon">i</span>
+          <div><b>Sobre los datos</b><p>La población corresponde a los censos de 2010 y 2020 publicados por INEGI. Los puntos universitarios son una muestra ilustrativa.</p></div>
+        </div>
+      </aside>
+
+      <section class="map-section">
+        <div class="map-toolbar">
+          <div><span class="live-dot"></span><span id="mapStatus">Cargando geometrías...</span></div>
+          <button id="resetMap" class="text-button" type="button">Restablecer vista ↗</button>
+        </div>
+        <div id="map" aria-label="Mapa interactivo de México"></div>
+        <div class="map-footer"><span>Arrastra para moverte · Usa + / − para acercar</span><span>Mapa base © OpenStreetMap</span></div>
+      </section>
+    </section>
+
+    <section class="summary-grid">
+      <article class="stat-card"><span class="stat-label">Población nacional</span><strong id="nationalTotal">—</strong><span id="nationalYear" class="stat-foot">Censo 2020</span></article>
+      <article class="stat-card"><span class="stat-label">Entidad más poblada</span><strong id="largestState">—</strong><span id="largestValue" class="stat-foot">—</span></article>
+      <article class="stat-card"><span class="stat-label">Entidad menos poblada</span><strong id="smallestState">—</strong><span id="smallestValue" class="stat-foot">—</span></article>
+      <article class="stat-card"><span class="stat-label">Entidades en el mapa</span><strong>32</strong><span class="stat-foot">Cobertura nacional</span></article>
+    </section>
+
+    <section class="detail-section">
+      <div class="detail-copy"><p class="eyebrow">DETALLE POR ENTIDAD</p><h2 id="detailTitle">Selecciona un estado</h2><p id="detailDescription">Haz clic en cualquier estado del mapa para consultar su población y comparar los dos censos.</p></div>
+      <div class="detail-values">
+        <div><span>Población 2010</span><b id="detail2010">—</b></div>
+        <div><span>Población 2020</span><b id="detail2020">—</b></div>
+        <div><span>Cambio 2010–2020</span><b id="detailChange">—</b></div>
+      </div>
+    </section>
+
+    <section class="findings">
+      <div><p class="eyebrow">LECTURA DEL MAPA</p><h2>¿Qué patrón regional observamos?</h2></div>
+      <p>La población no se distribuye de manera uniforme. En el censo 2020, el Estado de México, la Ciudad de México, Jalisco y Veracruz aparecen entre las entidades con mayor población. En contraste, Colima, Baja California Sur y Campeche se encuentran entre las de menor población. El mapa permite reconocer concentraciones demográficas y comparar cómo cambió la población estatal entre 2010 y 2020.</p>
+    </section>
+
+    <footer><span>MÉXICO EN DATOS · PROYECTO ACADÉMICO</span><span>Fuentes: INEGI · Geometrías GeoJSON · OpenStreetMap</span></footer>
+  </main>
+
+  <div id="toast" class="toast" role="status"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
